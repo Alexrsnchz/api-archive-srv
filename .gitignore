@@ -1,0 +1,21 @@
+# IDEs / OS
+.idea/
+.vscode/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Dependencies
+node_modules
+.pnpm-store/
+pnpm-debug.log*
+
+# Environment variables
+.env
+
+# Prisma
+prisma/migrations/
+src/generated/prisma/
+
