@@ -1,0 +1,10 @@
+.idea
+.vscode
+prisma/
+node_modules
+.github/*
+.env
+.env.example
+.gitignore
+package.json
+pnpm-lock.yaml
