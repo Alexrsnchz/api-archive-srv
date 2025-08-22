@@ -15,7 +15,7 @@ export default class CategoryController {
     const { id } = req.params;
 
     try {
-      const category = await CategoryService.getById(id);
+      const category = await CategoryService.getById(Number(id));
 
       return res.status(200).json(category);
     } catch (error) {
