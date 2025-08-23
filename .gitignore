@@ -17,5 +17,5 @@ pnpm-debug.log*
 
 # Prisma
 prisma/migrations/
+prisma/data/*
 src/generated/prisma/
-
