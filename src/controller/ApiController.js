@@ -23,6 +23,22 @@ export default class ApiController {
     }
   }
 
+  static async getApiSearch(req, res, next) {
+    const search = req.query.query;
+
+    if (!search || search.trim() === '') {
+      return res.status(200).json([]);
+    }
+
+    try {
+      const apis = await ApiService.getBySearch(search);
+
+      return res.status(200).json(apis);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async addApi(req, res, next) {
     const data = req.body;
 

@@ -1,23 +1,38 @@
-import CategoryRepository from '../repository/CategoryRepository.js';
+import { prisma } from '../lib/prisma.js';
 
-export default class CategoryService {
+export default class CategoryRepository {
   static getAll() {
-    return CategoryRepository.getAll();
+    return prisma.category.findMany({
+      include: {
+        _count: {
+          select: { apis: true },
+        },
+      },
+    });
   }
 
   static getById(id) {
-    return CategoryRepository.getById(id);
+    return prisma.category.findUnique({
+      where: { id },
+    });
   }
 
-  static create(category) {
-    return CategoryRepository.create(category);
+  static create(data) {
+    return prisma.category.create({
+      data: data,
+    });
   }
 
-  static update(id, category) {
-    return CategoryRepository.update(id, category);
+  static update(id, data) {
+    return prisma.category.update({
+      where: { id },
+      data: data,
+    });
   }
 
   static delete(id) {
-    return CategoryRepository.delete(id);
+    return prisma.category.delete({
+      where: { id },
+    });
   }
 }

@@ -5,6 +5,7 @@ export const apisRouter = new Router();
 
 apisRouter.get('/', ApiController.getApis);
 apisRouter.post('/', ApiController.addApi);
+apisRouter.get('/search', ApiController.getApiSearch);
 
 apisRouter.get('/:id', ApiController.getApi);
 apisRouter.patch('/:id', ApiController.updateApi);

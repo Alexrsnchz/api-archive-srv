@@ -1,23 +1,43 @@
-import ApiRepository from '../repository/ApiRepository.js';
+import { prisma } from '../lib/prisma.js';
 
-export default class ApiService {
+export default class ApiRepository {
   static getAll() {
-    return ApiRepository.getAll();
+    return prisma.api.findMany();
   }
 
   static getById(id) {
-    return ApiRepository.getById(id);
+    return prisma.api.findUnique({
+      where: { id },
+    });
   }
 
-  static create(api) {
-    return ApiRepository.create(api);
+  static getBySearch(search) {
+    return prisma.api.findMany({
+      where: {
+        name: {
+          contains: search,
+          mode: 'insensitive',
+        },
+      },
+    });
   }
 
-  static update(id, api) {
-    return ApiRepository.update(id, api);
+  static create(data) {
+    return prisma.api.create({
+      data: data,
+    });
+  }
+
+  static update(id, data) {
+    return prisma.api.update({
+      where: { id },
+      data: data,
+    });
   }
 
   static delete(id) {
-    return ApiRepository.delete(id);
+    return prisma.api.delete({
+      where: { id },
+    });
   }
 }
