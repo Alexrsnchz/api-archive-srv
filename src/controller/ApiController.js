@@ -26,7 +26,7 @@ export default class ApiController {
   static async getApiSearch(req, res, next) {
     const search = req.query.query;
 
-    if (!search || search.trim() === '') {
+    if (!search || search.length < 3 || search.trim() === '') {
       return res.status(200).json([]);
     }
 
