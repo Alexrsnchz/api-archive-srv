@@ -22,6 +22,12 @@ export default class ApiRepository {
     });
   }
 
+  static getByCategory(categoryId) {
+    return prisma.api.findMany({
+      where: { categoryId },
+    });
+  }
+
   static create(data) {
     return prisma.api.create({
       data: data,

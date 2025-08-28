@@ -39,6 +39,18 @@ export default class ApiController {
     }
   }
 
+  static async getApiCategory(req, res, next) {
+    const category = req.query.categoryId;
+
+    try {
+      const apis = await ApiService.getByCategory(Number(category));
+
+      return res.status(200).json(apis);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async addApi(req, res, next) {
     const data = req.body;
 
