@@ -1,7 +1,7 @@
-import { Prisma } from '../lib/prisma.js';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export function errorHandler(error, req, res, _next) {
-  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+  if (error instanceof PrismaClientKnownRequestError) {
     switch (error.code) {
       case 'P2025':
         return res.status(404).json({
