@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { prisma } from '../src/lib/prisma.js';
+import prisma from '../src/lib/prisma.js';
 
 async function main() {
   const categories = JSON.parse(readFileSync('./prisma/data/categoriesData.json', 'utf-8'));
