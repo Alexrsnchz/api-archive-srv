@@ -11,14 +11,13 @@ export default class CategoryRepository {
     });
   }
 
-  static async getPaginated(page = 1, limit = 10) {
+  static async getPaginated(page = 1, limit = 8) {
     const skip = (page - 1) * limit;
 
     const [data, total] = await Promise.all([
       prisma.category.findMany({
         skip,
         take: limit,
-        orderBy: { id: 'asc' },
         include: {
           _count: {
             select: { apis: true },
