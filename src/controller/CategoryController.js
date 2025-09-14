@@ -3,7 +3,17 @@ import CategoryService from '../service/CategoryService.js';
 export default class CategoryController {
   static async getCategories(req, res, next) {
     try {
-      const categories = await CategoryService.getAll();
+      const page = parseInt(req.query.page) || null;
+      const limit = parseInt(req.query.limit) || null;
+
+      let categories;
+
+      if (page && limit) {
+        categories = await CategoryService.getPaginated(page, limit);
+      } else {
+        const data = await CategoryService.getAll();
+        categories = { data };
+      }
 
       return res.status(200).json(categories);
     } catch (error) {
