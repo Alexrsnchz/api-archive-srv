@@ -11,33 +11,6 @@ export default class CategoryRepository {
     });
   }
 
-  static async getPaginated(page = 1, limit = 8) {
-    const skip = (page - 1) * limit;
-
-    const [data, total] = await Promise.all([
-      prisma.category.findMany({
-        skip,
-        take: limit,
-        include: {
-          _count: {
-            select: { apis: true },
-          },
-        },
-      }),
-      prisma.category.count(),
-    ]);
-
-    return {
-      data,
-      pagination: {
-        total,
-        page,
-        limit,
-        totalPages: Math.ceil(total / limit),
-      },
-    };
-  }
-
   static getById(id) {
     return prisma.category.findUnique({
       where: { id },
